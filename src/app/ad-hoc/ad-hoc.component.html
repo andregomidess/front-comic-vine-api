@@ -1,0 +1,118 @@
+<section class="p-5">
+    <div class="card h-100 p-4">
+        <form action class="w-100 h-100">
+            <div class="row">
+
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label for="table-select" class="mb-1">Escolha uma tabela</label>
+                        <select class="form-control" id="table-select"
+                            name="table-select" [(ngModel)]="opSelected"
+                            (change)="onChange()">
+                            <option value="characters">Characters</option>
+                            <option value="movies">Movies</option>
+                            <option value="super-power">Super powers</option>
+                            <option value="volumes">Volumes</option>
+                            <option value="editors">Editors</option>
+                            <!-- <option value="editors_volumes">Editors volumes</option>
+                            <option value="editors_Characters">Editors characters</option>
+                            <option value="movies_characters">Movies characters</option>
+                            <option value="characters_powers">Characters powers</option> -->
+                        </select>
+                    </div>
+                </div>
+
+                <ng-container *ngIf="opSelected === 'characters'">
+                    <p class="mt-2">Selecione as tabelas relacionadas:</p>
+                    <div class="col-md-2">
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox"
+                                value="editors" id="editors-table">
+                            <label class="form-check-label" for="editor-table">Editors</label>
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox"
+                                value="movies" id="movies-table">
+                            <label class="form-check-label" for="movies-table">Movies</label>
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox"
+                                value="volumes" id="volumes-table">
+                            <label class="form-check-label" for="volumes-table">Volumes</label>
+                        </div>
+                    </div>
+
+                    <div class="col-md-2">
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox"
+                                value="super-power" id="powers-table">
+                            <label class="form-check-label" for="powers-table">Super
+                                Power</label>
+                        </div>
+                    </div>
+
+                </ng-container>
+
+                <ng-container *ngIf="opSelected === 'movies'">
+                    <p class="mt-2">Selecione as tabelas relacionadas:</p>
+                    <div class="col-md-2">
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox"
+                                value="characters" id="characters-table">
+                            <label class="form-check-label" for="characters-table">Characters</label>
+                        </div>
+                    </div>
+                </ng-container>
+
+                <ng-container *ngIf="opSelected === 'super-power'">
+                    <p class="mt-2">Selecione as tabelas relacionadas:</p>
+                    <div class="col-md-2">
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox"
+                                value="characters" id="characters-table">
+                            <label class="form-check-label" for="characters-table">Characters</label>
+                        </div>
+                    </div>
+
+                </ng-container>
+
+                <ng-container *ngIf="opSelected === 'volumes'">
+                    <p class="mt-2">Selecione as tabelas relacionadas:</p>
+                    <div class="col-md-2">
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox"
+                                value="editors" id="editors-table">
+                            <label class="form-check-label" for="editor-table">Editors</label>
+                        </div>
+                    </div>
+
+                </ng-container>
+
+                <ng-container *ngIf="opSelected === 'editors'">
+                    <p class="mt-2">Selecione as tabelas relacionadas:</p>
+                    <div class="col-md-2">
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox"
+                                value="editors" id="editors-table">
+                            <label class="form-check-label" for="editor-table">Editors</label>
+                        </div>
+                    </div>
+
+                    <div class="col-md-2">
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox"
+                                value="characters" id="character-table">
+                            <label class="form-check-label" for="character-table">Characters</label>
+                        </div>
+                    </div>
+
+                </ng-container>
+
+            </div>
+        </form>
+    </div>
+</section>
