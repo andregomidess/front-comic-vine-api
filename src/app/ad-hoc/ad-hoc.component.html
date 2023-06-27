@@ -2,27 +2,25 @@
     <div class="card h-100 p-4">
         <form action class="w-100 h-100">
             <div class="row">
-
                 <div class="col-md-12">
                     <div class="form-group">
                         <label for="table-select" class="mb-1">Escolha uma tabela</label>
-                        <select class="form-control" id="table-select"
-                            name="table-select" [(ngModel)]="opSelected"
-                            (change)="onChange()">
-                            <option value="characters">Characters</option>
-                            <option value="movies">Movies</option>
-                            <option value="super-power">Super powers</option>
-                            <option value="volumes">Volumes</option>
-                            <option value="editors">Editors</option>
-                            <!-- <option value="editors_volumes">Editors volumes</option>
-                            <option value="editors_Characters">Editors characters</option>
-                            <option value="movies_characters">Movies characters</option>
-                            <option value="characters_powers">Characters powers</option> -->
-                        </select>
+                        <ng-select
+                          name="table-select"
+                          [items]="tables"
+                          [(ngModel)]="tableSelected">
+                        </ng-select>
                     </div>
                 </div>
 
-                <ng-container *ngIf="opSelected === 'characters'">
+                <ng-container *ngIf="tableSelected === 'characters'">
+
+                  <div class="col-md-12 mb-2 mt-2">
+                      <label for="filter-select" class="mb-1">Selecione os filtros</label>
+                      <ng-select id="filter-select" [multiple]="true" [(ngModel)]="filterSelected" name="filter-select">
+                        <ng-option *ngFor="let filter of filters" [value]="filter.name">{{filter.name}}</ng-option>
+                      </ng-select>
+                  </div>
                     <p class="mt-2">Selecione as tabelas relacionadas:</p>
                     <div class="col-md-2">
                         <div class="form-check">
@@ -54,10 +52,19 @@
                                 Power</label>
                         </div>
                     </div>
+                    <div class="col-md-6">
+                      
+                    </div>
 
                 </ng-container>
 
-                <ng-container *ngIf="opSelected === 'movies'">
+                <ng-container *ngIf="tableSelected === 'movies'">
+                  <div class="col-md-12 mb-2 mt-2">
+                    <label for="filter-select" class="mb-1">Selecione os filtros</label>
+                    <ng-select id="filter-select" [multiple]="true" [(ngModel)]="filterSelected" name="filter-select">
+                      <ng-option *ngFor="let filter of filters" [value]="filter.name">{{filter.name}}</ng-option>
+                    </ng-select>
+                </div>
                     <p class="mt-2">Selecione as tabelas relacionadas:</p>
                     <div class="col-md-2">
                         <div class="form-check">
@@ -68,7 +75,13 @@
                     </div>
                 </ng-container>
 
-                <ng-container *ngIf="opSelected === 'super-power'">
+                <ng-container *ngIf="tableSelected === 'super-power'">
+                  <div class="col-md-12 mb-2 mt-2">
+                    <label for="filter-select" class="mb-1">Selecione os filtros</label>
+                    <ng-select id="filter-select" [multiple]="true" [(ngModel)]="filterSelected" name="filter-select">
+                      <ng-option *ngFor="let filter of filters" [value]="filter.name">{{filter.name}}</ng-option>
+                    </ng-select>
+                </div>
                     <p class="mt-2">Selecione as tabelas relacionadas:</p>
                     <div class="col-md-2">
                         <div class="form-check">
@@ -80,7 +93,13 @@
 
                 </ng-container>
 
-                <ng-container *ngIf="opSelected === 'volumes'">
+                <ng-container *ngIf="tableSelected === 'volumes'">
+                  <div class="col-md-12 mb-2 mt-2">
+                    <label for="filter-select" class="mb-1">Selecione os filtros</label>
+                    <ng-select id="filter-select" [multiple]="true" [(ngModel)]="filterSelected" name="filter-select">
+                      <ng-option *ngFor="let filter of filters" [value]="filter.name">{{filter.name}}</ng-option>
+                    </ng-select>
+                </div>
                     <p class="mt-2">Selecione as tabelas relacionadas:</p>
                     <div class="col-md-2">
                         <div class="form-check">
@@ -92,7 +111,13 @@
 
                 </ng-container>
 
-                <ng-container *ngIf="opSelected === 'editors'">
+                <ng-container *ngIf="tableSelected === 'editors'">
+                  <div class="col-md-12 mb-2 mt-2">
+                    <label for="filter-select" class="mb-1">Selecione os filtros</label>
+                    <ng-select id="filter-select" [multiple]="true" [(ngModel)]="filterSelected" name="filter-select">
+                      <ng-option *ngFor="let filter of filters" [value]="filter.name">{{filter.name}}</ng-option>
+                    </ng-select>
+                </div>
                     <p class="mt-2">Selecione as tabelas relacionadas:</p>
                     <div class="col-md-2">
                         <div class="form-check">

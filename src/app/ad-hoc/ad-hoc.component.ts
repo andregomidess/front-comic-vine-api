@@ -7,15 +7,28 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AdHocComponent implements OnInit {
 
-  opSelected: string = '';
+  tableSelected!: string;
+  tables: string[] = ['characters', 'movies', 'super-power', 'volumes', 'editors'];
+  filterSelected: any[] = [];
+  filters = [
+      { id: 1, name: 'Filtro 1'},
+      { id: 2, name: 'Filtro 2'},
+      { id: 3, name: 'Filtro 3'},
+      { id: 4, name: 'Filtro 4'},
+  ];
+
+
+
+
 
   ngOnInit(): void {
-    
+
   }
 
   onChange(){
-    console.log(this.opSelected);
+    console.log(this.tableSelected);
   }
-  
+
+
 
 }

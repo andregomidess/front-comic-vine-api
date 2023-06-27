@@ -5,10 +5,12 @@ import { FormsModule } from '@angular/forms';
 
 
 @NgModule({
-  declarations: [],
+  declarations: [
+
+  ],
   imports: [
     CommonModule,
-    FormsModule
+    FormsModule,
   ]
 })
 export class AdHocModule { }
