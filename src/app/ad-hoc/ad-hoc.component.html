@@ -1,143 +1,41 @@
 <section class="p-5">
     <div class="card h-100 p-4">
-        <form action class="w-100 h-100">
+        <form action class="w-100 h-100" [formGroup]="tableForm">
             <div class="row">
                 <div class="col-md-12">
                     <div class="form-group">
-                        <label for="table-select" class="mb-1">Escolha uma tabela</label>
+                        <label for="table-select" class="mb-1">Escolha uma
+                            tabela</label>
                         <ng-select
-                          name="table-select"
-                          [items]="tables"
-                          [(ngModel)]="tableSelected">
+                            [items]="tables"
+                            formControlName="table"
+                            (change)="onChange()">
                         </ng-select>
                     </div>
                 </div>
 
-                <ng-container *ngIf="tableSelected === 'characters'">
-
-                  <div class="col-md-12 mb-2 mt-2">
-                      <label for="filter-select" class="mb-1">Selecione os filtros</label>
-                      <ng-select id="filter-select" [multiple]="true" [(ngModel)]="filterSelected" name="filter-select">
-                        <ng-option *ngFor="let filter of filters" [value]="filter.name">{{filter.name}}</ng-option>
-                      </ng-select>
-                  </div>
-                    <p class="mt-2">Selecione as tabelas relacionadas:</p>
-                    <div class="col-md-2">
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox"
-                                value="editors" id="editors-table">
-                            <label class="form-check-label" for="editor-table">Editors</label>
-                        </div>
-                    </div>
-                    <div class="col-md-2">
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox"
-                                value="movies" id="movies-table">
-                            <label class="form-check-label" for="movies-table">Movies</label>
-                        </div>
-                    </div>
-                    <div class="col-md-2">
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox"
-                                value="volumes" id="volumes-table">
-                            <label class="form-check-label" for="volumes-table">Volumes</label>
-                        </div>
-                    </div>
-
-                    <div class="col-md-2">
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox"
-                                value="super-power" id="powers-table">
-                            <label class="form-check-label" for="powers-table">Super
-                                Power</label>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                      
-                    </div>
-
+                <ng-container *ngIf="this.tableForm.value.table === 'characters'">
+                    <app-characters [form]="tableForm" formControlName="filters"></app-characters>
                 </ng-container>
 
-                <ng-container *ngIf="tableSelected === 'movies'">
-                  <div class="col-md-12 mb-2 mt-2">
-                    <label for="filter-select" class="mb-1">Selecione os filtros</label>
-                    <ng-select id="filter-select" [multiple]="true" [(ngModel)]="filterSelected" name="filter-select">
-                      <ng-option *ngFor="let filter of filters" [value]="filter.name">{{filter.name}}</ng-option>
-                    </ng-select>
-                </div>
-                    <p class="mt-2">Selecione as tabelas relacionadas:</p>
-                    <div class="col-md-2">
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox"
-                                value="characters" id="characters-table">
-                            <label class="form-check-label" for="characters-table">Characters</label>
-                        </div>
-                    </div>
+                <ng-container *ngIf="this.tableForm.value.table === 'movies'">
+                    <app-movies [form]="tableForm"></app-movies>
                 </ng-container>
 
-                <ng-container *ngIf="tableSelected === 'super-power'">
-                  <div class="col-md-12 mb-2 mt-2">
-                    <label for="filter-select" class="mb-1">Selecione os filtros</label>
-                    <ng-select id="filter-select" [multiple]="true" [(ngModel)]="filterSelected" name="filter-select">
-                      <ng-option *ngFor="let filter of filters" [value]="filter.name">{{filter.name}}</ng-option>
-                    </ng-select>
-                </div>
-                    <p class="mt-2">Selecione as tabelas relacionadas:</p>
-                    <div class="col-md-2">
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox"
-                                value="characters" id="characters-table">
-                            <label class="form-check-label" for="characters-table">Characters</label>
-                        </div>
-                    </div>
-
+                <ng-container *ngIf="this.tableForm.value.table === 'super-power'">
+                    <app-super-power [form]="tableForm"></app-super-power>
                 </ng-container>
 
-                <ng-container *ngIf="tableSelected === 'volumes'">
-                  <div class="col-md-12 mb-2 mt-2">
-                    <label for="filter-select" class="mb-1">Selecione os filtros</label>
-                    <ng-select id="filter-select" [multiple]="true" [(ngModel)]="filterSelected" name="filter-select">
-                      <ng-option *ngFor="let filter of filters" [value]="filter.name">{{filter.name}}</ng-option>
-                    </ng-select>
-                </div>
-                    <p class="mt-2">Selecione as tabelas relacionadas:</p>
-                    <div class="col-md-2">
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox"
-                                value="editors" id="editors-table">
-                            <label class="form-check-label" for="editor-table">Editors</label>
-                        </div>
-                    </div>
-
+                <ng-container *ngIf="this.tableForm.value.table === 'volumes'">
+                    <app-volumes [form]="tableForm"></app-volumes>
                 </ng-container>
 
-                <ng-container *ngIf="tableSelected === 'editors'">
-                  <div class="col-md-12 mb-2 mt-2">
-                    <label for="filter-select" class="mb-1">Selecione os filtros</label>
-                    <ng-select id="filter-select" [multiple]="true" [(ngModel)]="filterSelected" name="filter-select">
-                      <ng-option *ngFor="let filter of filters" [value]="filter.name">{{filter.name}}</ng-option>
-                    </ng-select>
-                </div>
-                    <p class="mt-2">Selecione as tabelas relacionadas:</p>
-                    <div class="col-md-2">
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox"
-                                value="editors" id="editors-table">
-                            <label class="form-check-label" for="editor-table">Editors</label>
-                        </div>
-                    </div>
-
-                    <div class="col-md-2">
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox"
-                                value="characters" id="character-table">
-                            <label class="form-check-label" for="character-table">Characters</label>
-                        </div>
-                    </div>
-
+                <ng-container *ngIf="this.tableForm.value.table === 'editors'">
+                    <app-editors [form]="tableForm"></app-editors>
                 </ng-container>
 
             </div>
+            <pre>{{tableForm.value | json}}</pre>
         </form>
     </div>
 </section>

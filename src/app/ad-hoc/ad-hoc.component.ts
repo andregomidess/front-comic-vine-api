@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-ad-hoc',
@@ -8,27 +9,30 @@ import { Component, OnInit } from '@angular/core';
 export class AdHocComponent implements OnInit {
 
   tableSelected!: string;
+  tableForm!: FormGroup;
+  joins: string[] = ['characters', 'movies', 'editors', 'volumes', 'super-power'];
   tables: string[] = ['characters', 'movies', 'super-power', 'volumes', 'editors'];
-  filterSelected: any[] = [];
-  filters = [
-      { id: 1, name: 'Filtro 1'},
-      { id: 2, name: 'Filtro 2'},
-      { id: 3, name: 'Filtro 3'},
-      { id: 4, name: 'Filtro 4'},
-  ];
 
-
-
+  constructor(private fb: FormBuilder){ }
 
 
   ngOnInit(): void {
+    this.tableForm = this.fb.group({
+      table: [null],
+      joins: this.buildJoins(),
+      filters: [null],
+      campos: [null],
+    })
+  }
 
+  buildJoins(){
+    const values = this.joins.map(v => new FormControl(false));
+    return this.fb.array(values);
   }
 
   onChange(){
-    console.log(this.tableSelected);
+    console.log(this.tableForm.value.table);
   }
-
 
 
 }
