@@ -19,7 +19,6 @@ export class AdHocComponent implements OnInit {
   ngOnInit(): void {
     this.tableForm = this.fb.group({
       table: [null],
-      joins: this.buildJoins(),
       filters: [null],
       campos: [null],
     })
@@ -31,7 +30,9 @@ export class AdHocComponent implements OnInit {
   }
 
   onChange(){
-    console.log(this.tableForm.value.table);
+    this.tableForm.removeControl('joins');
+    this.tableForm.get('filters')?.reset();
+    this.tableForm.get('campos')?.reset();
   }
 
 

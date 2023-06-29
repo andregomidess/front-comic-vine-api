@@ -1,6 +1,6 @@
 <section class="p-5">
     <div class="card h-100 p-4">
-        <form action class="w-100 h-100" [formGroup]="tableForm">
+        <form action class="w-100 h-100" [formGroup]="tableForm" >
             <div class="row">
                 <div class="col-md-12">
                     <div class="form-group">
@@ -15,7 +15,7 @@
                 </div>
 
                 <ng-container *ngIf="this.tableForm.value.table === 'characters'">
-                    <app-characters [form]="tableForm" formControlName="filters"></app-characters>
+                    <app-characters [form]="tableForm"></app-characters>
                 </ng-container>
 
                 <ng-container *ngIf="this.tableForm.value.table === 'movies'">

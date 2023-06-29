@@ -1,24 +1,33 @@
-<div class="row">
-    <div class="col-md-12 mb-2 mt-2">
-        <label for="filter-select" class="mb-1">Selecione os filtros</label>
-        <ng-select id="filter-select" [multiple]="true" [(ngModel)]="filterSelected" name="filter-select">
-          <ng-option *ngFor="let filter of filters" [value]="filter.name">{{filter.name}}</ng-option>
-        </ng-select>
-    </div>
-        <p class="mt-2">Selecione as tabelas relacionadas:</p>
-        <div class="col-md-2">
-            <div class="form-check">
-                <input class="form-check-input" type="checkbox"
-                    value="editors" id="editors-table">
-                <label class="form-check-label" for="editor-table">Editors</label>
-            </div>
+<div class="row" [formGroup]="form">
+
+    <p  class="mt-2">Selecione as tabelas relacionadas:</p>
+    <div class="col-md-2" formArrayName="joins" *ngFor="let item of getJoinsControls(); let i = index">
+        <div class="form-check" >
+            <input class="form-check-input" type="checkbox"
+                value="editors" id="editors-table" [formControlName]="i" (change)="OnChange()">
+            <label class="form-check-label" for="editor-table">{{joins[i]}}</label>
         </div>
-    
-        <div class="col-md-2">
-            <div class="form-check">
-                <input class="form-check-input" type="checkbox"
-                    value="characters" id="character-table">
-                <label class="form-check-label" for="character-table">Characters</label>
-            </div>
+    </div>
+
+        <div class="col-md-12 mb-2 mt-2">
+            <label for="filter-select" class="mb-1">Selecione os filtros</label>
+            <ng-select formControlName="filters" id="filter-select" [multiple]="true" name="filter-select" (change)="verificaFiltro()">
+              <ng-option *ngFor="let filter of filters" [value]="filter.nome">{{filter.nome}}</ng-option>
+            </ng-select>
+            <ng-container *ngIf="filtroEditorEspecifico">
+                <div class="form-group mt-2">
+                    <label for="table-select" class="mb-1">Selecione o nome do editor</label>
+                    <ng-select
+                        [items]="['nome1', 'nome2', 'nome3']">
+                    </ng-select>
+                </div>
+            </ng-container>
+        </div>
+
+        <div class="col-md-12 mb-2 mt-2" >
+            <label for="campos-select" class="mb-1">Selecione os campos</label>
+            <ng-select formControlName="campos" id="campos-select" [multiple]="true" name="campos-select">
+              <ng-option *ngFor="let campo of campos" [value]="campo.value">{{campo.nome}}</ng-option>
+            </ng-select>
         </div>
 </div>
