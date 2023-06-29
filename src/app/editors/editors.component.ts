@@ -43,9 +43,9 @@ export class EditorsComponent {
 
   filterSelected: any[] = [];
   filters = [ 
-    {value: 1, nome: 'Top 10 personagens que mais aparecem em revistas'},
-    {value: 2, nome: 'Personagens e revistas feita por um editor'},
-    {value: 3, nome: 'Países onde mais reside editores'},
+    {value: 3, nome: 'Top 10 personagens que mais aparecem em revistas'},
+    {value: 4, nome: 'Personagens e revistas feita por um editor'},
+    {value: 5, nome: 'Países onde mais reside editores'},
   ];
 
   constructor(private fb: FormBuilder) {}
@@ -94,7 +94,13 @@ export class EditorsComponent {
 
   verificaFiltro(){
     this.filtroEditorEspecifico = this.form.get('filters')?.value.includes('Personagens e revistas feita por um editor');
+    if(this.form.get('filters')?.value.includes(this.filters[0].value) || this.form.get('filters')?.value.includes(this.filters[1].value)){
+      this.form.get('joins')?.patchValue([true, true])
+    }
+    this.OnChange()
   }
+
+  
 
 
 }

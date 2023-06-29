@@ -52,7 +52,8 @@ export class CharactersComponent implements OnInit {
 
   filterSelected: any[] = [];
   filters = [
-      'Top 10 personagens que mais aparecem em filmes', 'Super poderes mais recorrentes',
+    {value: 1, name: 'Top 10 personagens que mais aparecem em filmes'},
+    {value: 2, name: 'Super poderes mais recorrentes'} 
   ];
   
   constructor(private fb: FormBuilder) {}
@@ -103,6 +104,19 @@ export class CharactersComponent implements OnInit {
       this.campos = this.campos.filter(item => !this.camposSuperPowers.includes(item));
     }
   }
+
+  verificaFiltro(){
+    if(this.form.get('filters')?.value.includes(this.filters[0].value)){
+      this.form.get('joins')?.patchValue([true, false, false])
+    }else if(this.form.get('filters')?.value.includes(this.filters[1].value)){
+      this.form.get('joins')?.patchValue([false, false, true]);
+      console.log(this.form.get('joins')?.value[2]);
+    }
+    this.toggleMovies();
+    this.toggleEditors();
+    this.toggleSuperPower();
+  }
+
 
   OnChange(){
     this.toggleMovies();

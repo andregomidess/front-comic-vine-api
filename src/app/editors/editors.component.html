@@ -12,7 +12,7 @@
         <div class="col-md-12 mb-2 mt-2">
             <label for="filter-select" class="mb-1">Selecione os filtros</label>
             <ng-select formControlName="filters" id="filter-select" [multiple]="true" name="filter-select" (change)="verificaFiltro()">
-              <ng-option *ngFor="let filter of filters" [value]="filter.nome">{{filter.nome}}</ng-option>
+              <ng-option *ngFor="let filter of filters" [value]="filter.value">{{filter.nome}}</ng-option>
             </ng-select>
             <ng-container *ngIf="filtroEditorEspecifico">
                 <div class="form-group mt-2">

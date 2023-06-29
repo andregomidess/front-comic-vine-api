@@ -29,7 +29,7 @@ export class SuperPowerComponent {
   ];
 
   filterSelected: any[] = [];
-  filters = ['Super Poderes mais recorrentes'];
+  filters = [{value: 12, nome: 'Super Poderes mais recorrentes'}];
 
   constructor(private fb: FormBuilder) {}
   

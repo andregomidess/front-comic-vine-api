@@ -20,8 +20,7 @@ import { AdHocModule } from './ad-hoc/ad-hoc.module';
     FormsModule,
     NgSelectModule,
     ReactiveFormsModule,
-    AdHocModule
-
+    AdHocModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

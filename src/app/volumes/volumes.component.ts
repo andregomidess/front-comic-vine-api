@@ -33,7 +33,7 @@ export class VolumesComponent {
 
   filterSelected: any[] = [];
   filters = [
-      { id: 1, name: 'Volumes com mais edições'},
+      { value: 13, nome: 'Volumes com mais edições'},
   ];
 
   constructor(private fb: FormBuilder) {}
@@ -62,6 +62,15 @@ export class VolumesComponent {
       // Remover os itens de camposMovies da lista campos
       this.campos = this.campos.filter(item => !this.camposEditors.includes(item));
     }
+  }
+
+  verificaFiltro(){
+    if(this.form.get('filters')?.value.includes(this.filters[0].value)){
+      this.form.get('joins')?.patchValue([true])
+    } else {
+      this.form.get('joins')?.patchValue([false])
+    }
+    this.OnChange()
   }
 
 

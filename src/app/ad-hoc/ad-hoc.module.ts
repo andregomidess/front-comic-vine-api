@@ -8,6 +8,7 @@ import { SuperPowerComponent } from '../super-power/super-power.component';
 import { VolumesComponent } from '../volumes/volumes.component';
 import { AdHocComponent } from './ad-hoc.component';
 import { NgSelectModule } from '@ng-select/ng-select';
+import { HttpClientModule } from '@angular/common/http';
 
 
 
@@ -26,6 +27,7 @@ import { NgSelectModule } from '@ng-select/ng-select';
     FormsModule,
     ReactiveFormsModule,
     NgSelectModule,
+    HttpClientModule,
   ], exports: [
     AdHocComponent
   ]

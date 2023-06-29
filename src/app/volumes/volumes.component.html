@@ -12,9 +12,9 @@
 
     <div class="col-md-12 mb-2 mt-2">
         <label for="filter-select" class="mb-1">Selecione os filtros</label>
-        <ng-select formControlName="filters" id="filter-select"
+        <ng-select (change)="verificaFiltro()" formControlName="filters" id="filter-select"
             [multiple]="true" name="filter-select">
-            <ng-option *ngFor="let filter of filters" [value]="filter.name">{{filter.name}}</ng-option>
+            <ng-option *ngFor="let filter of filters" [value]="filter.value">{{filter.nome}}</ng-option>
         </ng-select>
     </div>
 

@@ -35,7 +35,10 @@
                 </ng-container>
 
             </div>
-            <pre>{{tableForm.value | json}}</pre>
+            <!-- <pre>{{tableForm.value | json}}</pre> -->
+            <div class="botao w-100">
+                <button class="btn btn-primary" (click)="onSubmit()">Enviar</button>
+            </div>
         </form>
     </div>
 </section>
