@@ -12,8 +12,11 @@ export class AdHocComponent implements OnInit {
 
   tableSelected!: string;
   tableForm!: FormGroup;
-  joins: string[] = ['characters', 'movies', 'editors', 'volumes', 'super-power'];
-  tables: string[] = ['characters', 'movies', 'super-power', 'volumes', 'editors'];
+  joins: string[] = ['characters', 'movies', 'editors', 'volumes', 'powers'];
+  tables: string[] = ['characters', 'movies', 'powers', 'volumes', 'editors'];
+  submitted: boolean = false;
+  req!: any;
+  columns!: string[]
 
   constructor(
     private fb: FormBuilder,
@@ -40,25 +43,47 @@ export class AdHocComponent implements OnInit {
     this.tableForm.get('campos')?.reset();
   }
 
+  arrayToString(array: any[]): string{
+    if(array != null || undefined){
+      if (array.length <= 1){
+        return array[0];
+      }else{
+        return array.join(',');
+      }
+    }
+    return '';
+
+    
+  }
+
   onSubmit(){
     
-
+    this.submitted = true;
     let valueSubmit = Object.assign({}, this.tableForm.value);
     valueSubmit = Object.assign(valueSubmit, {
       joins: valueSubmit.joins.map((v:any, i:any) => v ? this.joins[i] : null)
       .filter((v:any) => v !== null)
     });
     console.log(valueSubmit);
-    if (this.tableForm.valid){
-      this.http
-        .post('https://httpbin.org/post', JSON.stringify({valueSubmit}))
-        .subscribe(
-          dados => {
-            console.log(dados);
-          },
-          (error: any) => alert('erro')
-        );
+    const selects = this.arrayToString(valueSubmit.campos);
+    const joins = this.arrayToString(valueSubmit.joins);
+    const table = valueSubmit.table;
+    const filter = String(valueSubmit.filters);
+    this.http.get(`http://localhost:3000/query?table=${table}&select=${selects}&joins=${joins}&filter=${filter}`)
+  .subscribe(
+    data => {
+      // Manipule a resposta da requisição aqui
+      this.req = data;
+      this.req = this.req[table]
+      this.columns = Object.keys(this.req[0]);
+      console.log(Object.values(this.req));
+    },
+    error => {
+      // Manipule o erro da requisição aqui
+      console.error(error);
     }
+  );
+
   }
 
 

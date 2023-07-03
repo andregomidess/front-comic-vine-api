@@ -33,7 +33,7 @@ export class VolumesComponent {
 
   filterSelected: any[] = [];
   filters = [
-      { value: 13, nome: 'Volumes com mais edições'},
+      { value: 10, nome: 'Volumes com mais edições'},
   ];
 
   constructor(private fb: FormBuilder) {}

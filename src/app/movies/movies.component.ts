@@ -35,12 +35,12 @@ export class MoviesComponent {
 
   filterSelected: any[] = [];
   filters = [
-    {value: 6, nome: 'Filmes com os maiores custos de produção'},
-    {value: 7, nome: 'Filmes com os menores custos de produção'},
-    {value: 8, nome: 'Filmes com as melhores avaliações'},
-    {value: 9, nome: 'Filmes com as piores avaliações'},
-    {value: 10, nome: 'Filmes com maior duração'},
-    {value: 11, nome: 'Filmes com menor duração'},];
+    {value: 3, nome: 'Filmes com os maiores custos de produção'},
+    {value: 4, nome: 'Filmes com os menores custos de produção'},
+    {value: 5, nome: 'Filmes com as melhores receitas'},
+    {value: 6, nome: 'Filmes com as piores receitas'},
+    {value: 7, nome: 'Filmes com maior duração'},
+    {value: 8, nome: 'Filmes com menor duração'},];
 
   constructor(private fb: FormBuilder) {}
   

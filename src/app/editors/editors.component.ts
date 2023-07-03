@@ -43,9 +43,9 @@ export class EditorsComponent {
 
   filterSelected: any[] = [];
   filters = [ 
-    {value: 3, nome: 'Top 10 personagens que mais aparecem em revistas'},
-    {value: 4, nome: 'Personagens e revistas feita por um editor'},
-    {value: 5, nome: 'Países onde mais reside editores'},
+    {value: 11, nome: 'Top 10 personagens que mais aparecem em revistas'},
+    {value: 12, nome: 'Personagens e revistas feita por um editor'},
+    {value: 13, nome: 'Países onde mais reside editores'},
   ];
 
   constructor(private fb: FormBuilder) {}

@@ -1,44 +1,59 @@
-<section class="p-5">
-    <div class="card h-100 p-4">
-        <form action class="w-100 h-100" [formGroup]="tableForm" >
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="form-group">
-                        <label for="table-select" class="mb-1">Escolha uma
-                            tabela</label>
-                        <ng-select
-                            [items]="tables"
-                            formControlName="table"
-                            (change)="onChange()">
-                        </ng-select>
-                    </div>
-                </div>
+<section class="pe-5 ps-5 pt-5 h-100 w-100">
+  <div class="card p-4">
+    <form action class="w-100" [formGroup]="tableForm">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="form-group">
+            <label for="table-select" class="mb-1">Escolha uma
+              tabela</label>
+            <ng-select [items]="tables" formControlName="table" (change)="onChange()" >
+            </ng-select>
+          </div>
+        </div>
 
-                <ng-container *ngIf="this.tableForm.value.table === 'characters'">
-                    <app-characters [form]="tableForm"></app-characters>
-                </ng-container>
+        <ng-container *ngIf="this.tableForm.value.table === 'characters'">
+          <app-characters [form]="tableForm"></app-characters>
+        </ng-container>
 
-                <ng-container *ngIf="this.tableForm.value.table === 'movies'">
-                    <app-movies [form]="tableForm"></app-movies>
-                </ng-container>
+        <ng-container *ngIf="this.tableForm.value.table === 'movies'">
+          <app-movies [form]="tableForm"></app-movies>
+        </ng-container>
 
-                <ng-container *ngIf="this.tableForm.value.table === 'super-power'">
-                    <app-super-power [form]="tableForm"></app-super-power>
-                </ng-container>
+        <ng-container *ngIf="this.tableForm.value.table === 'powers'">
+          <app-super-power [form]="tableForm"></app-super-power>
+        </ng-container>
 
-                <ng-container *ngIf="this.tableForm.value.table === 'volumes'">
-                    <app-volumes [form]="tableForm"></app-volumes>
-                </ng-container>
+        <ng-container *ngIf="this.tableForm.value.table === 'volumes'">
+          <app-volumes [form]="tableForm"></app-volumes>
+        </ng-container>
 
-                <ng-container *ngIf="this.tableForm.value.table === 'editors'">
-                    <app-editors [form]="tableForm"></app-editors>
-                </ng-container>
+        <ng-container *ngIf="this.tableForm.value.table === 'editors'">
+          <app-editors [form]="tableForm"></app-editors>
+        </ng-container>
 
-            </div>
-            <!-- <pre>{{tableForm.value | json}}</pre> -->
-            <div class="botao w-100">
-                <button class="btn btn-primary" (click)="onSubmit()">Enviar</button>
-            </div>
-        </form>
-    </div>
+      </div>
+      <div class="botao w-100">
+        <button class="btn btn-primary" (click)="onSubmit()">Enviar</button>
+      </div>
+    </form>
+
+    <ng-container *ngIf="submitted">
+      <div class="tabela-resposta mt-3">
+        <table class="table table-striped">
+          <thead>
+            <tr class="text-center">
+              <th scope="col" *ngFor="let col of columns">{{col}}</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="text-center" *ngFor="let item of req">
+              <td class="text-center" *ngFor="let key of columns">{{ item[key] }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </ng-container>
+
+
+  </div>
 </section>

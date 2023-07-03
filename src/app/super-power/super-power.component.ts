@@ -29,7 +29,7 @@ export class SuperPowerComponent {
   ];
 
   filterSelected: any[] = [];
-  filters = [{value: 12, nome: 'Super Poderes mais recorrentes'}];
+  filters = [{value: 9, nome: 'Super Poderes mais recorrentes entre os personagens'}];
 
   constructor(private fb: FormBuilder) {}
   
@@ -57,6 +57,15 @@ export class SuperPowerComponent {
       // Remover os itens de camposMovies da lista campos
       this.campos = this.campos.filter(item => !this.camposCharacters.includes(item));
     }
+  }
+
+  verificaFiltro(){
+    if(this.form.get('filters')?.value.includes(this.filters[0].value)){
+      this.form.get('joins')?.patchValue([true])
+    } else {
+      this.form.get('joins')?.patchValue([false])
+    }
+    this.OnChange()
   }
 
   OnChange(){

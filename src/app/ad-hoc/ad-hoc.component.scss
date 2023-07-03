@@ -3,6 +3,8 @@ section{
 }
 .card{
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    overflow: auto;
+    height: 50rem;
     
 }
 
@@ -12,4 +14,12 @@ section{
 button{
     margin-top: .5rem;
     
+}
+
+.tabela-resposta{
+    width: auto;
+    height: 25rem;
+    border: 1px solid rgb(209, 209, 209) !important;
+    overflow-y: auto !important;
+    overflow-x: hidden;
 }

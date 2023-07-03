@@ -53,7 +53,6 @@ export class CharactersComponent implements OnInit {
   filterSelected: any[] = [];
   filters = [
     {value: 1, name: 'Top 10 personagens que mais aparecem em filmes'},
-    {value: 2, name: 'Super poderes mais recorrentes'} 
   ];
   
   constructor(private fb: FormBuilder) {}
