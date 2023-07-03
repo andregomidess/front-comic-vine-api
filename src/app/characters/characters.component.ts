@@ -9,12 +9,12 @@ import { FormArray, FormBuilder, FormControl, FormGroup } from '@angular/forms';
 export class CharactersComponent implements OnInit {
 
   @Input() form!: FormGroup;
-  joins: string[] = ['movies', 'editors', 'super-power'];
+  joins: string[] = ['movies', 'editors', 'powers'];
   campos = [
     {value: 'characters.id', nome: 'characters_id'},
     {value: 'characters.name', nome: 'characters_name'},
     {value: 'characters.birth', nome:'characters_birth'},
-    {value: 'characters.num_edicoes_aparece', nome:'characters_num_edicoes_aparece'},
+    {value: 'characters.count_of_issue_appearances', nome:'characters_count_of_issue_appearances'},
     {value: 'characters.description', nome: 'characters_description'},
     {value: 'characters.rel_name', nome: 'characters_rel_name'},
   ];
@@ -32,10 +32,10 @@ export class CharactersComponent implements OnInit {
   ];
 
   camposSuperPowers = [
-    { value: 'super_powers.id', nome: 'super_powers_id' },
-    { value: 'super_powers.name', nome: 'super_powers_name' },
-    { value: 'super_powers.data_added', nome: 'super_powers_data_added' },
-    { value: 'super_powers.description', nome: 'super_powers_description' }
+    { value: 'powers.id', nome: 'powers_id' },
+    { value: 'powers.name', nome: 'powers_name' },
+    { value: 'powers.date_added', nome: 'powers_date_added' },
+    { value: 'powers.description', nome: 'powers_description' }
   ];
 
   camposEditors = [
@@ -47,16 +47,16 @@ export class CharactersComponent implements OnInit {
     { value: 'editors.birth', nome: 'editors_birth' },
     { value: 'editors.gender', nome: 'editors_gender' }
   ];
-  
+
 
 
   filterSelected: any[] = [];
   filters = [
     {value: 1, name: 'Top 10 personagens que mais aparecem em filmes'},
   ];
-  
+
   constructor(private fb: FormBuilder) {}
-  
+
   ngOnInit(): void {
     this.form.addControl('joins', this.buildJoins());
     console.log(this.form.controls['joins'].value[0])
@@ -87,7 +87,7 @@ export class CharactersComponent implements OnInit {
   toggleEditors() {
     if (this.form.controls['joins'].value[1]) {
       // Adicionar os itens de camposMovies à lista campos
-      this.campos.push(...this.camposEditors); 
+      this.campos.push(...this.camposEditors);
     } else {
       // Remover os itens de camposMovies da lista campos
       this.campos = this.campos.filter(item => !this.camposEditors.includes(item));

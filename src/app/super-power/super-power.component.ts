@@ -12,18 +12,18 @@ export class SuperPowerComponent {
   joins: string[] = ['characters'];
 
   campos = [
-    { value: 'super_powers.id', nome: 'super_powers_id' },
-    { value: 'super_powers.name', nome: 'super_powers_name' },
-    { value: 'super_powers.data_added', nome: 'super_powers_data_added' },
-    { value: 'super_powers.description', nome: 'super_powers_description' }
+    { value: 'powers.id', nome: 'powers_id' },
+    { value: 'powers.name', nome: 'powers_name' },
+    { value: 'powers.date_added', nome: 'powers_date_added' },
+    { value: 'powers.description', nome: 'powers_description' }
   ];
-  
+
 
   camposCharacters = [
     {value: 'characters.id', nome: 'characters_id'},
     {value: 'characters.name', nome: 'characters_name'},
     {value: 'characters.birth', nome:'characters_birth'},
-    {value: 'characters.num_edicoes_aparece', nome:'characters_num_edicoes_aparece'},
+    {value: 'characters.count_of_issue_appearances', nome:'characters_count_of_issue_appearances'},
     {value: 'characters.description', nome: 'characters_description'},
     {value: 'characters.rel_name', nome: 'characters_rel_name'},
   ];
@@ -32,7 +32,7 @@ export class SuperPowerComponent {
   filters = [{value: 9, nome: 'Super Poderes mais recorrentes entre os personagens'}];
 
   constructor(private fb: FormBuilder) {}
-  
+
   ngOnInit(): void {
     this.form.addControl('joins', this.buildJoins());
   }
@@ -52,7 +52,7 @@ export class SuperPowerComponent {
   toggleCharacters() {
     if (this.form.controls['joins'].value[0]) {
       // Adicionar os itens de camposMovies à lista campos
-      this.campos.push(...this.camposCharacters); 
+      this.campos.push(...this.camposCharacters);
     } else {
       // Remover os itens de camposMovies da lista campos
       this.campos = this.campos.filter(item => !this.camposCharacters.includes(item));
@@ -70,7 +70,7 @@ export class SuperPowerComponent {
 
   OnChange(){
     this.toggleCharacters();
-    
+
   }
 
 }

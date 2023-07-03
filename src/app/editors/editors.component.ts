@@ -17,7 +17,7 @@ export class EditorsComponent {
     { value: 'editors.name', nome: 'editors_name' },
     { value: 'editors.hometown', nome: 'editors_hometown' },
     { value: 'editors.country', nome: 'editors_country' },
-    { value: 'editors.data_added', nome: 'editors_data_added' },
+    { value: 'editors.date_added', nome: 'editors_data_added' },
     { value: 'editors.birth', nome: 'editors_birth' },
     { value: 'editors.gender', nome: 'editors_gender' }
   ];
@@ -35,21 +35,20 @@ export class EditorsComponent {
     {value: 'characters.id', nome: 'characters_id'},
     {value: 'characters.name', nome: 'characters_name'},
     {value: 'characters.birth', nome:'characters_birth'},
-    {value: 'characters.num_edicoes_aparece', nome:'characters_num_edicoes_aparece'},
+    {value: 'characters.count_of_issue_appearances', nome:'characters_count_of_issue_appearances'},
     {value: 'characters.description', nome: 'characters_description'},
     {value: 'characters.rel_name', nome: 'characters_rel_name'},
   ];
 
 
   filterSelected: any[] = [];
-  filters = [ 
+  filters = [
     {value: 11, nome: 'Top 10 personagens que mais aparecem em revistas'},
-    {value: 12, nome: 'Personagens e revistas feita por um editor'},
     {value: 13, nome: 'Países onde mais reside editores'},
   ];
 
   constructor(private fb: FormBuilder) {}
-  
+
   ngOnInit(): void {
     this.form.addControl('joins', this.buildJoins());
   }
@@ -79,7 +78,7 @@ export class EditorsComponent {
   toggleCharacters() {
     if (this.form.controls['joins'].value[1]) {
       // Adicionar os itens de camposMovies à lista campos
-      this.campos.push(...this.camposCharacters); 
+      this.campos.push(...this.camposCharacters);
     } else {
       // Remover os itens de camposMovies da lista campos
       this.campos = this.campos.filter(item => !this.camposCharacters.includes(item));
@@ -89,7 +88,7 @@ export class EditorsComponent {
   OnChange(){
     this.toggleCharacters();
     this.toggleVolumes();
-    
+
   }
 
   verificaFiltro(){
@@ -100,7 +99,7 @@ export class EditorsComponent {
     this.OnChange()
   }
 
-  
+
 
 
 }

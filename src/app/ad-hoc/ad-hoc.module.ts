@@ -9,6 +9,7 @@ import { VolumesComponent } from '../volumes/volumes.component';
 import { AdHocComponent } from './ad-hoc.component';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { HttpClientModule } from '@angular/common/http';
+import { GraphComponent } from '../graph/graph.component';
 
 
 
@@ -20,7 +21,7 @@ import { HttpClientModule } from '@angular/common/http';
     SuperPowerComponent,
     VolumesComponent,
     EditorsComponent,
-
+    GraphComponent
   ],
   imports: [
     CommonModule,

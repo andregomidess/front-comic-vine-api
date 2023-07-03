@@ -15,7 +15,7 @@ export class MoviesComponent {
     {value: 'characters.id', nome: 'characters_id'},
     {value: 'characters.name', nome: 'characters_name'},
     {value: 'characters.birth', nome:'characters_birth'},
-    {value: 'characters.num_edicoes_aparece', nome:'characters_num_edicoes_aparece'},
+    {value: 'characters.count_of_issue_appearances', nome:'characters_count_of_issue_appearances'},
     {value: 'characters.description', nome: 'characters_description'},
     {value: 'characters.rel_name', nome: 'characters_rel_name'},
   ];
@@ -25,7 +25,7 @@ export class MoviesComponent {
     { value: 'movies.name', nome: 'movies_name' },
     { value: 'movies.budget', nome: 'movies_budget' },
     { value: 'movies.description', nome: 'movies_description' },
-    { value: 'movies.data_added', nome: 'movies_data_added' },
+    { value: 'movies.date_added', nome: 'movies_date_added' },
     { value: 'movies.rating', nome: 'movies_rating' },
     { value: 'movies.total_revenue', nome: 'movies_total_revenue' },
     { value: 'movies.runtime', nome: 'movies_runtime' },
@@ -43,7 +43,7 @@ export class MoviesComponent {
     {value: 8, nome: 'Filmes com menor duração'},];
 
   constructor(private fb: FormBuilder) {}
-  
+
   ngOnInit(): void {
     this.form.addControl('joins', this.buildJoins());
   }
@@ -63,7 +63,7 @@ export class MoviesComponent {
   toggleCharacters() {
     if (this.form.controls['joins'].value[0]) {
       // Adicionar os itens de camposMovies à lista campos
-      this.campos.push(...this.camposCharacters); 
+      this.campos.push(...this.camposCharacters);
     } else {
       // Remover os itens de camposMovies da lista campos
       this.campos = this.campos.filter(item => !this.camposCharacters.includes(item));
@@ -72,7 +72,7 @@ export class MoviesComponent {
 
   OnChange(){
     this.toggleCharacters();
-    
+
   }
 
 }

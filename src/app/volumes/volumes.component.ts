@@ -16,7 +16,7 @@ export class VolumesComponent {
     { value: 'editors.name', nome: 'editors_name' },
     { value: 'editors.hometown', nome: 'editors_hometown' },
     { value: 'editors.country', nome: 'editors_country' },
-    { value: 'editors.data_added', nome: 'editors_data_added' },
+    { value: 'editors.date_added', nome: 'editors_date_added' },
     { value: 'editors.birth', nome: 'editors_birth' },
     { value: 'editors.gender', nome: 'editors_gender' }
   ];
@@ -29,7 +29,7 @@ export class VolumesComponent {
     { value: 'volumes.description', nome: 'volumes_description' },
     { value: 'volumes.date_added', nome: 'volumes_date_added' }
   ];
-  
+
 
   filterSelected: any[] = [];
   filters = [
@@ -37,7 +37,7 @@ export class VolumesComponent {
   ];
 
   constructor(private fb: FormBuilder) {}
-  
+
   ngOnInit(): void {
     this.form.addControl('joins', this.buildJoins());
   }
@@ -57,7 +57,7 @@ export class VolumesComponent {
   toggleEditors() {
     if (this.form.controls['joins'].value[0]) {
       // Adicionar os itens de camposMovies à lista campos
-      this.campos.push(...this.camposEditors); 
+      this.campos.push(...this.camposEditors);
     } else {
       // Remover os itens de camposMovies da lista campos
       this.campos = this.campos.filter(item => !this.camposEditors.includes(item));
