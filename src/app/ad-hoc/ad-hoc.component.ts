@@ -11,21 +11,28 @@ import { Subscription } from 'rxjs';
 })
 export class AdHocComponent implements OnInit {
 
+
   tableSelected!: string;
   tableForm!: FormGroup;
-  joins: string[] = ['characters', 'movies', 'editors', 'volumes', 'powers'];
   tables: string[] = ['characters', 'movies', 'powers', 'volumes', 'editors'];
+  joinsCharacters: string[] = ['movies', 'editors', 'powers'];
+  joinsEditors: string[] = ['volumes', 'characters'];
+  joinsMovies: string[] = ['characters'];
+  joinsPowers: string[] = ['characters'];
+  joinsVolumes: string[] = ['editors'];
   submitted: boolean = false;
   req!: any;
   columns!: string[]
   httpSubscription!: Subscription
-  labels: any;
-  dataGraph: any;
+  labels: any = {};
+  dataGraph: any = {};
+  subKeys: any;
+
 
   constructor(
     private fb: FormBuilder,
     private http: HttpClient,
-    ){ }
+    ){  }
 
 
   ngOnInit(): void {
@@ -36,9 +43,13 @@ export class AdHocComponent implements OnInit {
     })
   }
 
-  buildJoins(){
-    const values = this.joins.map(v => new FormControl(false));
-    return this.fb.array(values);
+  getSubKeys(obj: any){
+    console.log(Object.keys(obj));
+    return Object.keys(obj);
+  }
+
+  isArrayReq(valor: any){
+    return Array.isArray(valor);
   }
 
   onChange(){
@@ -66,14 +77,50 @@ export class AdHocComponent implements OnInit {
 
   }
 
+  formatCheckboxArrayForm(){
+    let valueSubmit = Object.assign({}, this.tableForm.value);
+    switch(this.tableForm.value['table']){
+      case 'characters':
+        valueSubmit = Object.assign(valueSubmit, {
+          joins: valueSubmit.joins.map((v:any, i:any) => v ? this.joinsCharacters[i] : null)
+          .filter((v:any) => v !== null)
+        });
+        break;
+      case 'movies':
+        valueSubmit = Object.assign(valueSubmit, {
+          joins: valueSubmit.joins.map((v:any, i:any) => v ? this.joinsMovies[i] : null)
+          .filter((v:any) => v !== null)
+        });
+        break;
+      case 'powers':
+        valueSubmit = Object.assign(valueSubmit, {
+          joins: valueSubmit.joins.map((v:any, i:any) => v ? this.joinsPowers[i] : null)
+          .filter((v:any) => v !== null)
+        });
+        break;
+      case 'volumes':
+        valueSubmit = Object.assign(valueSubmit, {
+          joins: valueSubmit.joins.map((v:any, i:any) => v ? this.joinsVolumes[i] : null)
+          .filter((v:any) => v !== null)
+        });
+        break;
+      case 'editors':
+        valueSubmit = Object.assign(valueSubmit, {
+          joins: valueSubmit.joins.map((v:any, i:any) => v ? this.joinsEditors[i] : null)
+          .filter((v:any) => v !== null)
+        });
+        break;
+    }
+
+    return valueSubmit;
+
+  }
+
+
   onSubmit(){
 
     this.submitted = true;
-    let valueSubmit = Object.assign({}, this.tableForm.value);
-    valueSubmit = Object.assign(valueSubmit, {
-      joins: valueSubmit.joins.map((v:any, i:any) => v ? this.joins[i] : null)
-      .filter((v:any) => v !== null)
-    });
+    let valueSubmit = this.formatCheckboxArrayForm()
     console.log(valueSubmit);
     const selects = this.arrayToString(valueSubmit.campos);
     const joins = this.arrayToString(valueSubmit.joins);
@@ -85,8 +132,8 @@ export class AdHocComponent implements OnInit {
       // Manipule a resposta da requisição aqui
       this.req = data;
       this.req = this.req[table]
+      console.log(this.req);
       this.columns = Object.keys(this.req[0]);
-      //console.log(this.tableForm.get('filters')?.value[0] == '1');
       this.getLabels();
       this.getData();
     },

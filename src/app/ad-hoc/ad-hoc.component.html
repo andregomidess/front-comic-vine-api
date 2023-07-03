@@ -28,13 +28,14 @@
         </ng-container>
 
         <ng-container *ngIf="this.tableForm.value.table === 'editors'">
-          <app-editors [form]="tableForm"></app-editors>
+          <app-editors [form]="tableForm" (change)="onChange()"></app-editors>
         </ng-container>
 
       </div>
       <div class="botao w-100">
         <button class="btn btn-primary" (click)="onSubmit()">Enviar</button>
       </div>
+      
     </form>
 
     <ng-container *ngIf="submitted">
@@ -47,8 +48,24 @@
           </thead>
           <tbody>
             <tr class="text-center" *ngFor="let item of req">
-              <td class="text-center" *ngFor="let key of columns">{{ item[key] }}</td>
+              <td class="text-center" *ngFor="let key of columns">
+                <ng-container *ngIf="isArrayReq(item[key])" >
+                  <!-- Se o valor é um array, itera sobre os elementos do array -->
+                  <ng-container *ngFor="let k of getSubKeys(item[key][0])">
+                    <span *ngFor="let subItem of item[key]">
+                      {{ subItem[k] + ','}} <!-- Exemplo de propriedade que deseja exibir -->
+                    </span>
+                  </ng-container>
+
+                </ng-container>
+                <ng-container *ngIf="!isArrayReq(item[key])">
+                  {{ item[key] }} <!-- Exibe o valor diretamente -->
+                </ng-container>
+              </td>
             </tr>
+            <!-- <tr class="text-center" *ngFor="let item of req">
+              <td class="text-center" *ngFor="let key of columns">{{ item[key] }}</td>
+            </tr> -->
           </tbody>
         </table>
       </div>
